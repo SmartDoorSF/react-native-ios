@@ -18,7 +18,7 @@ Beacons.requestAlwaysAuthorization();
 
 let region = {
   identifier: 'Estimotes',
-  uuid: 'e2c56db5dffb48d2b060d0f5a71096e0'
+  uuid: 'E2C56DB5-DFFB-48D2-B060-D0F5A71096E0'
 };
 
 // DeviceEventEmitter.addListener(
@@ -27,8 +27,9 @@ let region = {
 //     console.log('this is the data', data);
 //   }
 // )
+
 Beacons.startMonitoringForRegion(region);
-// Beacons.startRangingBeaconsInRegion(region);
+Beacons.startRangingBeaconsInRegion(region);
  
 Beacons.startUpdatingLocation();
 
@@ -45,9 +46,9 @@ class beaconTest2 extends Component {
       'beaconsDidRange',
       (data) => {
         this.setState({
-          proximity: data.region.proximity,
-          distance: data.region.accuracy,
-          uuid: data.region.uuid
+          proximity: data.beacons[0].proximity,
+          distance: data.beacons[0].accuracy,
+          uuid: data.beacons[0].uuid
         });
       }
     );
