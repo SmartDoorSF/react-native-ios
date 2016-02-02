@@ -21,13 +21,6 @@ let region = {
   uuid: 'E2C56DB5-DFFB-48D2-B060-D0F5A71096E0'
 };
 
-// DeviceEventEmitter.addListener(
-//   'beaconsDidRange',
-//   (data) => {
-//     console.log('this is the data', data);
-//   }
-// )
-
 Beacons.startMonitoringForRegion(region);
 Beacons.startRangingBeaconsInRegion(region);
  
@@ -52,6 +45,16 @@ class beaconTest2 extends Component {
         });
       }
     );
+  }
+  openDoor() {
+    fetch('https://frozen-plains-21667.herokuapp.com/inform/', {
+      method: 'POST'
+    });
+  }
+  componentWillUpdate() {
+    if(this.state.distance < 20){
+      this.openDoor();
+    }
   }
   render() {
     return (
